@@ -1,0 +1,9 @@
+PLATFORM=mac
+
+echo Compiling: yuleria.c 
+gcc -c ../yuleria.c  -o yuleria.$PLATFORM.o
+echo Compiling: yuleria_test.c
+gcc -c yuleriatest.c  -o yuleriatest.$PLATFORM.o
+echo Merging
+g++ yuleria.$PLATFORM.o yuleriatest.$PLATFORM.o -o bin/test_$PLATFORM
+
