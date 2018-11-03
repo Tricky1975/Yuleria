@@ -13,6 +13,12 @@ void * yul_xnew(void * obj,long int size,void (* constructor)(void * self), void
 	return ret; // warning preventer (will be removed later);
 }
 
+yul_obj yul_newstring(char *newstring){
+	int l=strlen(newstring)+1;
+	char *wstring = malloc(l); strcpy(wstring,newstring);
+	return yul_xnew(wstring,l,NULL,NULL);
+}
+
 void _yulnull_do(yul_obj obj){
 	yul_obj o=obj;
 	o->ycount--;

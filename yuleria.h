@@ -22,7 +22,7 @@ typedef struct yul_s_node {
 void * yul_xnew(void * obj,long int size,void (* constructor)(void * self), void (* destructor)(void * self));
 void _yulnull_do(yul_obj obj); // should never be used directly but through the macro!
 void yul_point(yul_obj yobjtar,yul_obj yobjfrom);
-
+yul_obj yul_newstring(char *newstring);
 
 #endif
 
