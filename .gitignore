@@ -1,0 +1,16 @@
+# Eclipse
+.project
+
+# Builds
+*.o
+test/bin
+*.exe
+*.app
+*.dll
+*.dylib
+*.so
+
+# Crap from Mac
+.DS_Store
+._*
+
