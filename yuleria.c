@@ -84,6 +84,7 @@ yul_obj _yulstr_concat(yul_obj target,yul_obj str1, yul_obj str2){
     }
 }
 
+
 void _yulnull_do(yul_obj obj){
 	yul_obj o=obj;
 	o->ycount--;

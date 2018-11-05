@@ -24,6 +24,8 @@
 #define yul_null(obj) _yulnull_do(obj); obj=NULL;
 #define yul_strcpy(target,source) target=_yulstrcpy(target,source)
 #define yul_str_concat(target,str1,str2) target=_yulstr_concat(target,str1,str2)
+#define yul_strsame(yul_obj o1,yul_obj o2) strcmp(o1->yobject,o2->yobject)==0
+
 
 // types
 typedef struct yul_s_object {
