@@ -14,3 +14,6 @@ test/bin
 .DS_Store
 ._*
 
+# MKL ignore
+MKL*
+*MKL*
