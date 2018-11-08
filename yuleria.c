@@ -1,6 +1,6 @@
 // Lic:
 //   yuleria.c
-//   
+//
 //   version: 18.11.05
 //   Copyright (C) 2018 Jeroen P. Broks
 //   This software is provided 'as-is', without any express or implied
@@ -21,6 +21,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include "yuleria.h"
+
+yul_obj yq_first = NULL;
+yul_obj yq_last  = NULL;
 
 void * yul_xnew(void * obj,long int size,void (* constructor)(void * self), void (* destructor)(void * self)){
 	void  * rob      = obj; //malloc(size); // rob = returnable object

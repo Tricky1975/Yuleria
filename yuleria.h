@@ -1,6 +1,6 @@
 // Lic:
 //   yuleria.h
-//   
+//
 //   version: 18.11.05
 //   Copyright (C) 2018 Jeroen P. Broks
 //   This software is provided 'as-is', without any express or implied
@@ -33,6 +33,9 @@ typedef struct yul_s_object {
 	void (* ydestructor)(void * yself);
 	int    ycount;
 	int    ysize;
+	// These can be used for the total release of all memory
+	struct yul_s_object * yq_prev;
+	struct yul_s_object * yq_next;
 } * yul_obj;
 
 typedef struct yul_s_node {
