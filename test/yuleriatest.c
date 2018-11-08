@@ -23,21 +23,21 @@
 #include "../yuleria.h"
 
 void destructor(void * test){
-	printf("text %s will be destroyed\n",test);
+	printf("text %s will be destroyed\n",(char*)test);
 }
 
 void constructor(void * test){
-	printf("text %s has been assigned\n",test);
+	printf("text %s has been assigned\n",(char*)test);
 }
 
 int main(void){
 	printf("Time to test Yuleria\n");
 	char*n=malloc(7); strcpy(n,"Jeroen"); // I cannot use ready to go strings, I see! True string workout comes later
 	yul_obj ytest = yul_xnew(n,7,constructor,destructor);
-	printf("%s == %s\n",n,ytest->yobject);
+	printf("%s == %s\n",n,(char*)(ytest->yobject));
 	yul_obj ytest2=NULL;
 	yul_strcpy(ytest2,ytest);
-	printf("Did I copy %s?\n",ytest->yobject);
+	printf("Did I copy %s?\n",(char*)(ytest->yobject));
 	yul_null(ytest);
 	yul_null(ytest2);
 	printf("destruction done!\n");
