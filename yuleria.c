@@ -102,6 +102,11 @@ void _yulnull_do(yul_obj obj,bool noq){
 	o->ycount--;
 	if (o->ycount==0){
 		if (o->ydestructor!=NULL) o->ydestructor(o->yobject);
+		if (o->yq_prev==NULL) {
+			yq_first=o->yq_next;
+		} else {
+			o->yq_prev=o->yq_next;
+		}
 		free(o->yobject);
 		free(o);
 	}
