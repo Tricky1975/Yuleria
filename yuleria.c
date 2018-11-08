@@ -20,6 +20,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 #include "yuleria.h"
 
 yul_obj yq_first = NULL;
@@ -32,6 +33,14 @@ void * yul_xnew(void * obj,long int size,void (* constructor)(void * self), void
 	ret->ycount      = 1;
 	ret->ydestructor = destructor;
 	ret->ysize       = size;
+	ret->yq_next     = NULL;
+	if (yq_first==NULL) {
+		 yq_first = ret;
+	} else {
+		 ret->yq_prev=yq_last;
+		 yq_last->yq_next=ret;
+	}
+	yq_last = ret;
 	if (constructor!=NULL) constructor(rob);
 	return ret; // warning preventer (will be removed later);
 }
@@ -88,7 +97,7 @@ yul_obj _yulstr_concat(yul_obj target,yul_obj str1, yul_obj str2){
 }
 
 
-void _yulnull_do(yul_obj obj){
+void _yulnull_do(yul_obj obj,bool noq){
 	yul_obj o=obj;
 	o->ycount--;
 	if (o->ycount==0){
@@ -104,5 +113,14 @@ void yul_point(yul_obj yobjtar,yul_obj yobjfrom){
 		yul_null(yobjtar);
 		yobjtar=yobjfrom;
 		yobjtar->ycount++;
+	}
+}
+
+void yul_disposeall(){
+	if (yq_first!=NULL){
+			for (yul_obj killme=yq_first;killme!=NULL;killme=killme->yq_next) _yulnull_do(killme->yq_prev,true);
+			free(yq_last);
+			yq_first=NULL;
+			yq_last=NULL;
 	}
 }

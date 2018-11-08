@@ -19,9 +19,10 @@
 // EndLic
 #ifndef __YULERIA_HAS_ALREADY_BEEN_LOADED__
 #define __YULERIA_HAS_ALREADY_BEEN_LOADED__
+#include <stdbool.h>
 #define yul_new(size) yul_xnew(malloc(size),size,NULL,NULL)
 #define yul_object    yul_obj
-#define yul_null(obj) _yulnull_do(obj); obj=NULL;
+#define yul_null(obj) _yulnull_do(obj,false); obj=NULL;
 #define yul_strcpy(target,source) target=_yulstrcpy(target,source)
 #define yul_str_concat(target,str1,str2) target=_yulstr_concat(target,str1,str2)
 #define yul_strsame(o1,o2) strcmp(o1->yobject,o2->yobject)==0
@@ -46,12 +47,13 @@ typedef struct yul_s_node {
 
 // functions
 void * yul_xnew(void * obj,long int size,void (* constructor)(void * self), void (* destructor)(void * self));
-void _yulnull_do(yul_obj obj); // should never be used directly but through the macro!
+void _yulnull_do(yul_obj obj,bool noq); // should never be used directly but through the macro!
 void yul_point(yul_obj yobjtar,yul_obj yobjfrom);
 yul_obj yul_newstring(char *newstring);
 void yul_redef(yul_obj target,char * source);
 yul_obj _yulstrcpy(yul_obj target,yul_obj source);
 yul_obj _yulstr_concat(yul_obj target,yul_obj str1, yul_obj str2);
+void yul_disposeall();
 /*
  * functions prefixed as "yul_" should be directly usable
  * functions prefixed as "_yul" should only be used through the macro I set up for it.

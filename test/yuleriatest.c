@@ -1,6 +1,6 @@
 // Lic:
 //   yuleriatest.c
-//   
+//
 //   version: 18.11.05
 //   Copyright (C) 2018 Jeroen P. Broks
 //   This software is provided 'as-is', without any express or implied
@@ -18,7 +18,7 @@
 //   3. This notice may not be removed or altered from any source distribution.
 // EndLic
 #include <stdio.h>
-#include <strings.h>
+#include <string.h>
 #include <stdlib.h>
 #include "../yuleria.h"
 
